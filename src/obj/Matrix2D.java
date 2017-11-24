@@ -2,39 +2,41 @@ package obj;
 
 import java.util.Random;
 
+import org.newdawn.slick.SlickException;
+
+import com.sun.javafx.image.IntPixelAccessor;
 import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 import MyLog.MyLog;
 
 public class Matrix2D {
-	public static int[][] MT;
+	public static Candy[][] MT =new Candy[9][9];
+	public static int mt[][] =new int[9][9];
 	private static Random random;
-	public static void createMatrix() {
-		random = new Random();
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0 ; j < 5; j ++) {
-				MT[i][j] = random.nextInt(4);
+	public static void createMatrix() throws SlickException {
+		for(int i = 0 ; i < 9; i++) {
+			for(int j = 0; j < 9; j++) {
+				MT[i][j] = new Candy();
+				mt[i][j] = MT[i][j].getN();
 			}
 		}
 	}
 	
-	public Point getPoint(int i, int j) {
-		
-		//int Px = 
-		
-		//return new Point(Px, Py);
-		
+	public void drawCandy() {
+		for(int i = 0; i < 9; i++) {
+			for(int j = 0 ; j < 9; j++) {
+				MT[i][j].myDraw( 150 + 80 * i, 150 + 80 * j);
+			}
+		}
 	}
 	
-	public static void showMatrix2D(int[][] mt) {
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				if (mt[i][j] == -1)
-					MyLog.print(" " + mt[i][j]);
-				else
-					MyLog.print("  " + mt[i][j]);
+	
+	public static void showMatrix2D() {
+		for(int i = 0; i < 9; i++) {
+			for(int j = 0; j < 9; j++) {
+				System.out.print(mt[i][j] + " ");
 			}
-			MyLog.println("");
+			System.out.println();
 		}
 	}
 }

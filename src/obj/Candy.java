@@ -6,19 +6,22 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
+import com.sun.javafx.geom.transform.GeneralTransform3D;
 import com.sun.org.apache.xerces.internal.util.DraconianErrorHandler;
+import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac.IntegrityHmacSHA256;
 
 import Game.InGame;
 import MyLog.MyLog;
+import sun.security.action.GetBooleanAction;
 
 public class Candy {
 	
 	Pos pos;
 	Image cdImg;
+	int n;
 	Random random = new Random();
 	public Candy() throws SlickException {
-		int n = getTypeCandy();
-		
+		n = getTypeCandy();		
 		if(n == 5 ) {
 			cdImg = new Image("images/Redcandy.png");
 			//cdImg.draw(30, 30);
@@ -46,6 +49,13 @@ public class Candy {
 		}
 	}
 	
+	public int getN() {
+		return n;
+	}
+	public void removeImg() throws SlickException {
+		
+	}
+	
 	void showMtrix() {
 		
 	}
@@ -60,6 +70,7 @@ public class Candy {
 		return random.nextInt(6);
 		
 	}
+	
 	
 	public void myDraw(int x, int y) {
 		cdImg.draw(x, y);
