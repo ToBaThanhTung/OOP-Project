@@ -1,13 +1,16 @@
 package obj;
 
+import java.nio.file.attribute.PosixFileAttributes;
 import java.util.Random;
+
+import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import com.sun.javafx.image.IntPixelAccessor;
 import com.sun.javafx.scene.paint.GradientUtils.Point;
-
+import Game.InGame;
 import MyLog.MyLog;
 
 
@@ -20,18 +23,23 @@ public class Matrix2D {
 	public static int mt[][] =new int[lengthRow][lengthColum];
 	private static Random random;
 	Image cdImg;
+	InGame inGame;
 	
 	//Candy candy;
 	public static void createMatrix() throws SlickException {
 		for(int i = 0 ; i < lengthRow; i++) {
 			for(int j = 0; j < lengthColum; j++) {
-				
 				mt[i][j] = Candy.getTypeCandy();
 			}
 		}
 	}
 	
 	
+	
+	public static void updateMatrix(int i, int j) {
+		mt[i][j] = Candy.getTypeCandy();
+		showMatrix2D();
+	}
 	
 	public void drawCandy() throws SlickException {
 		for(int i = 0; i < lengthRow; i++) {
@@ -62,6 +70,8 @@ public class Matrix2D {
 	}
 	
 	
+	
+	
 	public static void showMatrix2D() {
 		for(int i = 0; i < 9; i++) {
 			for(int j = 0; j < 9; j++) {
@@ -69,5 +79,6 @@ public class Matrix2D {
 			}
 			System.out.println();
 		}
+		System.out.println("\n\n\n");
 	}
 }

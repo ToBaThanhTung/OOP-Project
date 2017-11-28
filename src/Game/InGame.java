@@ -12,12 +12,14 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.omg.CORBA.ORBPackage.InconsistentTypeCode;
 
 import net.java.games.input.Mouse;
 import obj.Candy;
 import obj.Matrix2D;
 import obj.Pos;
+import sun.misc.GC;
 import sun.security.util.Length;
 import sun.tools.jar.resources.jar;
 
@@ -25,13 +27,13 @@ public class InGame extends BasicGameState{
 	
 	
 	private Image inGame;
-
-	Candy[][] candy;
 	Matrix2D matrix2d;
 	String mouse = "No Input!";
 	int lengthColum = 9;
 	int lengthRow = 9;
-	
+	public static boolean isClickLeftMouse;
+	public static int posX;
+	public static int posY;
 	@Override
 	public void init(GameContainer ag, StateBasedGame sbg) throws SlickException {
 
@@ -51,8 +53,7 @@ public class InGame extends BasicGameState{
 		g.drawString(mouse, 50, 50);
 		matrix2d.drawCandy(); 
 		
-		
-				
+					
 	}
 		
 	
@@ -63,17 +64,26 @@ public class InGame extends BasicGameState{
 		if(gc.getInput().isKeyDown(Input.KEY_BACK)) {
 			sbg.enterState(0, new FadeOutTransition(), new FadeInTransition());
 		}
-		
-		
-		int posX = gc.getInput().getMouseX();
-		int posY = gc.getInput().getMouseY();
+		posX = gc.getInput().getMouseX();
+		posY = gc.getInput().getMouseY();
 		mouse = "X:" + posX + "Y:" + posY; 
-		boolean isClickLeftMouse = gc.getInput().isMousePressed(0);
-		
+		isClickLeftMouse = gc.getInput().isMousePressed(0);
+		detect(gc, sbg);
 
-		
-		
+				
 	}
+	public void detect(GameContainer gc, StateBasedGame sbg) throws SlickException{
+		for(int i = 0; i <= lengthRow ; i++) {
+			for(int j = 0; j < lengthColum; j ++) {
+				if(isClickLeftMouse) {
+					if(posX > 150 + 80 * j && posX < 230 + 80 * j && posY > 150 + 80 * i && posY < 230 + 80 * i) {
+						matrix2d.updateMatrix(i, j);
+					}
+				}
+			}
+		}
+	}
+
 
 	@Override
 	public int getID() {
