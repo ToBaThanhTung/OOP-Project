@@ -46,19 +46,16 @@ public class InGame extends BasicGameState{
 	}
 
 	@Override
-	public void render(GameContainer ag, StateBasedGame sbg, Graphics g) throws SlickException {
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		
 		inGame.draw(0, 0);	
 		g.setColor(Color.black);
 		g.drawString(mouse, 50, 50);
 		matrix2d.drawCandy(); 
+		matrix2d.updateMatrix();
 		
-					
 	}
 		
-	
-	
-
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int k) throws SlickException {
 		if(gc.getInput().isKeyDown(Input.KEY_BACK)) {
@@ -77,7 +74,8 @@ public class InGame extends BasicGameState{
 			for(int j = 0; j < lengthColum; j ++) {
 				if(isClickLeftMouse) {
 					if(posX > 150 + 80 * j && posX < 230 + 80 * j && posY > 150 + 80 * i && posY < 230 + 80 * i) {
-						matrix2d.updateMatrix(i, j);
+						matrix2d.getXY(i, j);
+						matrix2d.isClickCandy = true;
 					}
 				}
 			}
