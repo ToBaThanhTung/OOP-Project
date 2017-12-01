@@ -1,6 +1,7 @@
 package obj;
 
 import java.nio.file.attribute.PosixFileAttributes;
+import java.security.PublicKey;
 import java.util.Random;
 
 import javax.swing.text.StyledEditorKit.ForegroundAction;
@@ -21,7 +22,7 @@ public class Matrix2D {
 	public static final int lengthColum = 9;
 	public static final int lengthRow = 9;
 	
-	public static int[][] MT =new int[lengthRow][lengthColum];
+	public Candy[][] MT;
 	public static int mt[][] =new int[lengthRow][lengthColum];
 	private static Random random;
 	Image cdImg;
@@ -29,31 +30,54 @@ public class Matrix2D {
 	private Color Color;
 	public int x;
 	public int y;
-	public static boolean isClickCandy;
+	public int activeX;
+	public int activeY;
+	public boolean isActive = false;
+	public boolean isClickOutSide;
+	public int check = 0;
 	//Candy candy;
-	public static void createMatrix() throws SlickException {
-		for(int i = 0 ; i < lengthRow; i++) {
+	DrawCandy DrawCandy;
+	
+	
+	public Matrix2D() throws SlickException {
+		//DrawCandy = new DrawCandy();
+		//DrawCandy.matrix2d = this;
+		MT = new Candy[lengthRow][lengthColum];
+		for(int i = 0 ; i < 9; i++) {
 			for(int j = 0; j < lengthColum; j++) {
-				mt[i][j] = Candy.getTypeCandy();
+				int type = Candy.getTypeCandy();
+				Candy newCandy = new Candy(type , 150 + 80 * i, 150 + 80 * j);
+				MT[i][j] = newCandy; 
+				mt[i][j] = type;
 			}
 		}
+		showMatrix2D();
 	}
 	
 	
-	public void getXY(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public void setActiveXY(int activeX, int activeY) {
+		this.activeX = activeX;
+		this.activeY = activeY;
 	}
 	
-	public void updateMatrix() throws SlickException {
-		if(isClickCandy) {
+	
+	
+	public void setIsClickOutside(boolean a) {
+		this.isClickOutSide = a;
+	}
+	
+
+	public void updateClickCandy() throws SlickException {
 			getImg(x, y);
 			cdImg.draw( 150 + 80 * y, 150 + 80 * x, Color.gray);
-		}
 	}
 	
+	public void myDraw(int i, int j) throws SlickException {
+		getImg(i, j);
+		cdImg.draw( 150 + 80 * j, 150 + 80 * i);
+	}
 	public void getImg(int i, int j) throws SlickException {
-				int n = mt[i][j];
+				int n = MT[i][j].typeCandy;
 				if(n == 5 ) {
 				cdImg = new Image("images/Redcandy.png");				
 				}
@@ -71,40 +95,7 @@ public class Matrix2D {
 				}
 				else if(n == 4) {
 					cdImg = new Image("images/Lightbluecandy.png");
-				}
-			
-		
-	}
-	
-	public void drawCandy() throws SlickException {
-		
-		for(int i = 0; i < lengthRow; i++) {
-			for(int j = 0 ; j < lengthColum; j++) {
-				int n = mt[i][j];
-				if(n == 5 ) {
-				cdImg = new Image("images/Redcandy.png");				
-				}
-				else if(n == 1) {
-					cdImg = new Image("images/blueCandy.png");
-				}
-				else if(n == 0) {
-					cdImg = new Image("images/Greencandy.png");
-				}
-				else if(n == 2) {
-					cdImg = new Image("images/Yellowcandy.png");
-				}
-				else if(n == 3) {
-					cdImg = new Image("images/Orangecandy.png");
-				}
-				else if(n == 4) {
-					cdImg = new Image("images/Lightbluecandy.png");
-					
-				}
-				cdImg.draw( 150 + 80 * j, 150 + 80 * i);				
-			
-			}
-		}
-		
+				}		
 	}
 	
 	
@@ -117,6 +108,6 @@ public class Matrix2D {
 			}
 			System.out.println();
 		}
-		System.out.println("\n\n\n");
+		System.out.println("");
 	}
 }
