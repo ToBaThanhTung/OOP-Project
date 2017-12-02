@@ -22,7 +22,7 @@ public class Matrix2D {
 	public static final int lengthColum = 9;
 	public static final int lengthRow = 9;
 	
-	public Candy[][] MT;
+	public static Candy[][] MT;
 	public static int mt[][] =new int[lengthRow][lengthColum];
 	private static Random random;
 	Image cdImg;
@@ -104,7 +104,7 @@ public class Matrix2D {
 	public static void showMatrix2D() {
 		for(int i = 0; i < 9; i++) {
 			for(int j = 0; j < 9; j++) {
-				System.out.print(mt[i][j] + " ");
+				System.out.print(MT[i][j].typeCandy + " ");
 			}
 			System.out.println();
 		}

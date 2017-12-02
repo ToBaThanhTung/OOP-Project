@@ -3,6 +3,7 @@ package Game;
 import javax.swing.text.AbstractDocument.LeafElement;
 import javax.xml.ws.soap.MTOM;
 
+import org.lwjgl.Sys;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -40,6 +41,8 @@ public class InGame extends BasicGameState{
 	public static int posY; 
 	public static int activeX;
 	public static int activeY;
+	// bien tam thoi 
+	public static int saveType;
 	public static int k = 0;
 	
 	@Override
@@ -71,7 +74,8 @@ public class InGame extends BasicGameState{
 		mouse = "X:" + posX + "Y:" + posY; 
 		isClickLeftMouse = gc.getInput().isMousePressed(0);
 		detectClickCandy(gc, sbg);
-		//detectClickOutSideCandy(gc, sbg);
+		detectMove();
+		
 				
 	}
 	public void detectClickCandy(GameContainer gc, StateBasedGame sbg) throws SlickException{
@@ -85,17 +89,137 @@ public class InGame extends BasicGameState{
 							
 							matrix2d.MT[i][j].isActived = true;
 							matrix2d.isActive = true;
-							matrix2d.setActiveXY(i, j);
+							matrix2d.activeX = i;
+							matrix2d.activeY = j;
 							
 							
-							System.out.println("Active : x = " + i + ", y  = " + j);
+							System.out.println("Active : x = " + matrix2d.activeX + ", y  = " + matrix2d.activeY + "  typeCandy: " + matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy);
+							
 						}
 				
 						
 					}
 				}
 			}
-			
+	}
+	
+	public void detectMove() {
+		detectMoveRight();
+		detectMoveLeft();
+		detectMoveUp();
+		detectMoveDown();
+	}
+	
+	public void swapTypeCandy(int temp, int firstCandy, int lastCandy) {
+		temp = firstCandy;
+		firstCandy = lastCandy;
+		lastCandy = temp;
+	}
+	
+	public void detectMoveRight() {
+		if(matrix2d.isActive) {
+			if(matrix2d.activeY  + 1  < lengthColum - 1) {
+				if(posY > matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].x && posY < (matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].x + 80)
+						&& posX > matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].y &&  posX < matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].y + 80 ) {
+					//de-active
+					matrix2d.isActive = false;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].isActived = false;
+					
+					//Swap
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy + "  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+//					swapTypeCandy(saveType, matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy, matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy);
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy +"  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+					
+					saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy = saveType;
+					
+					matrix2d.showMatrix2D();
+				}
+				
+	
+			}
+		}
+	}
+	
+	
+	public void detectMoveLeft() {
+		if(matrix2d.isActive) {
+			if(matrix2d.activeY - 1 >= 0) {
+				if(posY > matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].x && posY < (matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].x + 80)
+						&& posX > matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].y &&  posX < matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].y + 80 ) {
+					//de-active
+					matrix2d.isActive = false;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].isActived = false;
+					
+					//Swap
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy + "  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+//					swapTypeCandy(saveType, matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy, matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy);
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy +"  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+					
+					saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].typeCandy;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].typeCandy = saveType;
+					
+					matrix2d.showMatrix2D();
+				}
+				
+	
+			}
+		}
+	}
+	
+	public void detectMoveUp() {
+		if(matrix2d.isActive) {
+			if(matrix2d.activeX - 1  >= 0) {
+				if(posY > matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].x && posY < (matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].x + 80)
+						&& posX > matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].y &&  posX < matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].y + 80 ) {
+					//de-active
+					matrix2d.isActive = false;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].isActived = false;
+					
+					//Swap
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy + "  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+//					swapTypeCandy(saveType, matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy, matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy);
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy +"  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+					
+					saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].typeCandy;
+					matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].typeCandy = saveType;
+					
+					matrix2d.showMatrix2D();
+				}
+				
+	
+			}
+		}
+	}
+	
+	
+	public void detectMoveDown() {
+		if(matrix2d.isActive) {
+			if(matrix2d.activeX + 1  < lengthRow - 1) {
+				if(posY > matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].x && posY < (matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].x + 80)
+						&& posX > matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].y &&  posX < matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].y + 80 ) {
+					//de-active
+					matrix2d.isActive = false;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].isActived = false;
+					
+					//Swap
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy + "  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+//					swapTypeCandy(saveType, matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy, matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy);
+//					System.out.println( matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy +"  " +  matrix2d.MT[matrix2d.activeX ][matrix2d.activeY + 1].typeCandy);
+					
+					saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
+					matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].typeCandy;
+					matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].typeCandy = saveType;
+					
+					matrix2d.showMatrix2D();
+				}
+				
+	
+			}
+		}
 	}
 	
 
