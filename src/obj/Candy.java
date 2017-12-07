@@ -16,66 +16,25 @@ import sun.security.action.GetBooleanAction;
 
 public class Candy {
 	
-	Pos pos;
-	public static Image cdImg;
-	public int n;
+	
 	static Random random = new Random();
-//	public Candy() throws SlickException {
-//		n = getTypeCandy();		
-//		if(n == 5 ) {
-//			cdImg = new Image("images/Redcandy.png");
-//			//cdImg.draw(30, 30);
-//			
-//		}
-//		else if(n == 1) {
-//			cdImg = new Image("images/Darkbluecandy.png");
-//			//cdImg.draw(30, 30);
-//		}
-//		else if(n == 0) {
-//			cdImg = new Image("images/Greencandy.png");
-//		//	cdImg.draw(30, 30);
-//		}
-//		else if(n == 2) {
-//			cdImg = new Image("images/Yellowcandy.png");
-//			//cdImg.draw(30, 30);
-//		}
-//		else if(n == 3) {
-//			cdImg = new Image("images/Orangecandy.png");
-//		//	cdImg.draw(30, 30);
-//		}
-//		else if(n == 4) {
-//			cdImg = new Image("images/Lightbluecandy.png");
-//		//	
-//		}
-//	}
+	public int typeCandy;
+	public int x;
+	public int y;
+	public boolean isActived = false;
 	
-	public int getN() {
-		return n;
+	public Candy(int typeCandy, int x, int y) {
+		this.typeCandy = typeCandy;
+		this.x = x;
+		this.y = y;
 	}
-	public void removeImg() throws SlickException {
-		
-	}
-	
-	void showMtrix() {
-		
-	}
-	
-	
-	public Candy(Pos pos) {
-		this.pos = pos;
-	}
-		
 	
 	public static int getTypeCandy() {
 		return random.nextInt(6);
 		
 	}
 	
-	
-	public static void myDraw(int x, int y) {
-		cdImg.draw(y, x);
-		
-	}
+
 	
 	
 	
