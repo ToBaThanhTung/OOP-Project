@@ -65,7 +65,7 @@ public class InGame extends BasicGameState{
 		
 		inGame.draw(0, 0);	
 		g.setColor(Color.black);
-		g.drawString(mouse, 50, 50);
+		g.drawString(mouse, 50, 400);
 		//matrix2d.drawCandy(); 
 		drawCandy = new DrawCandy();
 	}
@@ -90,6 +90,7 @@ public class InGame extends BasicGameState{
 			detectMatch();
 		}
 		if(stateInGame == 2) {
+			
 			Falling();
 		}
 		
@@ -418,6 +419,7 @@ public class InGame extends BasicGameState{
 			for(int j = 0; j < lengthRow; j++) {
 				if(matrix2d.MT[i][j].typeCandy == 10) {
 					if(i == 0) {
+						
 						matrix2d.MT[i][j].typeCandy = Candy.getTypeCandy();
 						System.out.println("Add new random candy at "+ i + " " + j);
 						
@@ -438,7 +440,13 @@ public class InGame extends BasicGameState{
 	}
 	
 	
-	
+	void timeslow(int i)
+	{
+		while(i>0)
+		{
+			--i;
+		}
+	}
 
 	public void setActive(int activeX, int activeY) {
 		this.activeX = activeX;
