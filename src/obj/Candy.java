@@ -19,11 +19,14 @@ public class Candy {
 	
 	static Random random = new Random();
 	public int typeCandy;
-	public int x;
-	public int y;
-	public boolean isActived = false;
 	
-	public Candy(int typeCandy, int x, int y) {
+	public float x;
+	public float y;
+	
+	public boolean isActived = false;
+	public  boolean isFalling = false;
+	
+	public Candy(int typeCandy, float x, float y ) {
 		this.typeCandy = typeCandy;
 		this.x = x;
 		this.y = y;

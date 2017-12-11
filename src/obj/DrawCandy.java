@@ -8,24 +8,31 @@ import Game.InGame;
 import sun.net.www.content.text.plain;
 
 public class DrawCandy {
+	
 	public static final int lengthColum = 9;
 	public static final int lengthRow = 9;
 	public Matrix2D matrix2d;
 	public Image cdImg;
-	
 	public Color color;
+	
+	public static int gravity = 1; 
+	public static float speed = 10;
+	
+	
 	public DrawCandy() throws SlickException {
 		this.matrix2d = InGame.matrix2d;
+		
 		 for(int i = 0; i < lengthRow; i++) {
 			 for(int j = 0; j < lengthColum; j++) {
-				boolean isClicked = matrix2d.MT[i][j].isActived;
+				 boolean isClicked = matrix2d.MT[i][j].isActived;
 				 if(!isClicked) {
 					 myDraw(i, j);
 				 }
-				 else if(isClicked) {
+				 else if(isClicked ) {
 					 mydrawClicked(i, j);
 				 }
 				 
+				
 			 }
 		 }
 	}
@@ -51,11 +58,16 @@ public class DrawCandy {
 		else if(n == 4) {
 			cdImg = new Image("images/Lightbluecandy.png");
 		}		
+		
+	}
+	public void myDrawFloat(float i, float j) throws SlickException {
+		getImg(2, 2);
+		cdImg.draw( 150 + 80 * j , 150 + 80 * i + gravity);
 	}
 	
 	public void myDraw(int i, int j) throws SlickException {
 		getImg(i, j);
-		cdImg.draw( 150 + 80 * j, 150 + 80 * i);
+		cdImg.draw( matrix2d.MT[i][j].y , matrix2d.MT[i][j].x);
 	}
 	
 	public void mydrawClicked(int i, int j) throws SlickException {
