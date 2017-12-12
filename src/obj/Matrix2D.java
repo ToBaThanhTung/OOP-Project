@@ -2,6 +2,7 @@ package obj;
 
 import java.nio.file.attribute.PosixFileAttributes;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.text.StyledEditorKit.ForegroundAction;
@@ -15,6 +16,7 @@ import com.sun.javafx.image.IntPixelAccessor;
 import com.sun.javafx.scene.paint.GradientUtils.Point;
 import Game.InGame;
 import MyLog.MyLog;
+import sun.text.resources.cldr.bn.FormatData_bn_IN;
 
 
 
@@ -41,23 +43,31 @@ public class Matrix2D {
 	public int check = 0;
 	public int [] image= new int[6];
 	public int [][] b;
-	//Candy candy;
-	DrawCandy DrawCandy;
+	public static Pos[][] locateCandy;	
+	
 	
 	
 	
 	public Matrix2D() throws SlickException {
-		//DrawCandy = new DrawCandy();
-		//DrawCandy.matrix2d = this;
+	
 		MT = new Candy[lengthRow][lengthColum];
+		locateCandy = new Pos[9][9];
 		for(int i = 0 ; i < 9; i++) {
 			for(int j = 0; j < lengthColum; j++) {
 				int type= choosecandy(i,j,MT);
 				setMT(i,j,type);
+				setPos(i, j);
 			}
 		}
 		showMatrix2D();
+		showPos();
 	}
+	
+	public void setPos(int i, int j) {
+		Pos newPos = new Pos( 150 + 80 * i, 150 + 80 * j);
+		locateCandy[i][j] = newPos; 
+	}
+	
 	public void setMT(int i, int j,int type)
 	{
 		
@@ -142,44 +152,16 @@ public class Matrix2D {
 	
 	
 	
-	public void setIsClickOutside(boolean a) {
-		this.isClickOutSide = a;
+	
+	public static void showPos() {
+		for(int i = 0; i < 9; i++) {
+			for(int j = 0; j < 9; j++) {
+				System.out.print(locateCandy[i][j].x + "," + locateCandy[i][j].y + "  ") ;
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
-	
-
-	public void updateClickCandy() throws SlickException {
-			getImg(x, y);
-			cdImg.draw( 150 + 80 * y, 150 + 80 * x, Color.gray);
-	}
-	
-	public void myDraw(int i, int j) throws SlickException {
-		getImg(i, j);
-		cdImg.draw( 150 + 80 * j, 150 + 80 * i);
-	}
-	public void getImg(int i, int j) throws SlickException {
-				int n = MT[i][j].typeCandy;
-				if(n == 5 ) {
-				cdImg = new Image("images/Redcandy.png");				
-				}
-				else if(n == 1) {
-					cdImg = new Image("images/blueCandy.png");
-				}
-				else if(n == 0) {
-					cdImg = new Image("images/Greencandy.png");
-				}
-				else if(n == 2) {
-					cdImg = new Image("images/Yellowcandy.png");
-				}
-				else if(n == 3) {
-					cdImg = new Image("images/Orangecandy.png");
-				}
-				else if(n == 4) {
-					cdImg = new Image("images/Lightbluecandy.png");
-				}		
-	}
-	
-	
-	
 	
 	public static void showMatrix2D() {
 		for(int i = 0; i < 9; i++) {

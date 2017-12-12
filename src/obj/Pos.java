@@ -1,10 +1,11 @@
 package obj;
 
 public class Pos {
-	double x, y;
-	Pos(double x, double y){
+	public float x;
+	public float y;
+	public Pos(float x, float y){
 		this.x = x;
-		this.x = y;
+		this.y = y;
 		
 	}
 	@Override

@@ -10,5 +10,7 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Plan Vs Zombie/natives"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/projectOOP/OOP-Project/lib/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="E:/projectOOP/OOP-Project/lib/jorbis-0.0.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
