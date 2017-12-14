@@ -25,6 +25,14 @@ public class Candy {
 	
 	public boolean isActived = false;
 	public  boolean isFalling = false;
+	public boolean redown = false;
+	public boolean reup = false;
+	public boolean isDown = false;
+	public boolean isUp = false;
+	public boolean reright = false;
+	public boolean isLeft = false;
+	public boolean releft = false;
+	public boolean isRight = false;
 	
 	public Candy(int typeCandy, float x, float y ) {
 		this.typeCandy = typeCandy;

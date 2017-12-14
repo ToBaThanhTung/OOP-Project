@@ -14,4 +14,7 @@ public class MySound {
 	void myPlaySound() {
 		sound.play();
 	}
+	void myPlayLoopSound() {
+		sound.loop();
+	}
 }

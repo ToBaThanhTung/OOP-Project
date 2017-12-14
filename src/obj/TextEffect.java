@@ -6,10 +6,11 @@ public class TextEffect {
 	public int typeTextEffect;
 	public String str = "Not Set !";
 	public boolean isDestroy = false;
-	public int counter = 0;
+	public float counter = 0;
 	public float moveSpeedY = 1;
-	public int counterDeleteLength = 40;
+	public int counterDeleteLength = 60;
 	public int typeScore;
+	public boolean moveScore = false;
 	public TextEffect(float x, float y, int typeTextEffect, float moveSpeedY, String str, int typeScore) {
 		this.x = x;
 		this.y = y;
@@ -21,7 +22,7 @@ public class TextEffect {
 	
 	public void update() {
 		y += moveSpeedY;
-		counter += 3;
+		counter += 0.5f;
 		if(counter > counterDeleteLength ) {
 			isDestroy = true;
 		}

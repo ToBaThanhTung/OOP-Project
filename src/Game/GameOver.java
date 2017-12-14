@@ -21,7 +21,7 @@ public class GameOver extends BasicGameState{
 	private int posY;
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		overGameImage = new Image("images/inGame2.jpg");
+		overGameImage = new Image("images/Frosting_Springs_background.jpg");
 		myFont = new MyFont("font/scoreApear.ttf", 50);
 		//score = inGame.Score;
 	}
@@ -29,7 +29,7 @@ public class GameOver extends BasicGameState{
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		overGameImage.draw(0, 0);
-		myFont.myFontDraw(200, 300, "GAME OVER !!!", Color.black);
+		myFont.myFontDraw(250, 300, "GAME OVER !!!", Color.black);
 		
 		myFont.myFontDraw(200,400, "your score: " + score, Color.black);
 		

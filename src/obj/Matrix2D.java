@@ -14,6 +14,8 @@ import org.newdawn.slick.SlickException;
 
 import com.sun.javafx.image.IntPixelAccessor;
 import com.sun.javafx.scene.paint.GradientUtils.Point;
+
+import Game.CongfigGame;
 import Game.InGame;
 import MyLog.MyLog;
 import sun.text.resources.cldr.bn.FormatData_bn_IN;
@@ -21,11 +23,9 @@ import sun.text.resources.cldr.bn.FormatData_bn_IN;
 
 
 public class Matrix2D {
-	public static final int lengthColum = 9;
-	public static final int lengthRow = 9;
 	
 	public static Candy[][] MT;
-	public static int mt[][] =new int[lengthRow][lengthColum];
+	public static int mt[][] =new int[CongfigGame.lengthRow][CongfigGame.lengthColum];
 	private static Random random;
 	Image cdImg;
 	InGame inGame;
@@ -37,12 +37,17 @@ public class Matrix2D {
 	
 	public int fallingX;
 	public int fallingY;
+	public boolean notDetectRight = false;
 	public boolean isActive = false;
 	public boolean isFalling = false;
 	public boolean isClickOutSide;
 	public int check = 0;
 	public int [] image= new int[6];
 	public int [][] b;
+	public boolean notDetectLeft = false;
+	public boolean notDetectUp = false;
+	public boolean notDetectDown = false 
+			;
 	public static Pos[][] locateCandy;	
 	
 	
@@ -50,10 +55,10 @@ public class Matrix2D {
 	
 	public Matrix2D() throws SlickException {
 	
-		MT = new Candy[lengthRow][lengthColum];
-		locateCandy = new Pos[9][9];
-		for(int i = 0 ; i < 9; i++) {
-			for(int j = 0; j < lengthColum; j++) {
+		MT = new Candy[CongfigGame.lengthRow][CongfigGame.lengthColum];
+		locateCandy = new Pos[CongfigGame.lengthRow][CongfigGame.lengthRow];
+		for(int i = 0 ; i < CongfigGame.lengthColum; i++) {
+			for(int j = 0; j < CongfigGame.lengthRow; j++) {
 				int type= choosecandy(i,j,MT);
 				setMT(i,j,type);
 				setPos(i, j);
@@ -64,14 +69,14 @@ public class Matrix2D {
 	}
 	
 	public void setPos(int i, int j) {
-		Pos newPos = new Pos( 150 + 80 * i, 150 + 80 * j);
+		Pos newPos = new Pos( 150 + 80 * i, 95 + 80 * j);
 		locateCandy[i][j] = newPos; 
 	}
 	
 	public void setMT(int i, int j,int type)
 	{
 		
-		Candy newCandy = new Candy(type , 150 + 80 * i, 150 + 80 * j);
+		Candy newCandy = new Candy(type , 150 + 80 * i, 95 + 80 * j);
 		MT[i][j] = newCandy; 
 		
 	}
@@ -154,8 +159,8 @@ public class Matrix2D {
 	
 	
 	public static void showPos() {
-		for(int i = 0; i < 9; i++) {
-			for(int j = 0; j < 9; j++) {
+		for(int i = 0; i < CongfigGame.lengthRow; i++) {
+			for(int j = 0; j < CongfigGame.lengthColum; j++) {
 				System.out.print(locateCandy[i][j].x + "," + locateCandy[i][j].y + "  ") ;
 			}
 			System.out.println();
@@ -164,8 +169,8 @@ public class Matrix2D {
 	}
 	
 	public static void showMatrix2D() {
-		for(int i = 0; i < 9; i++) {
-			for(int j = 0; j < 9; j++) {
+		for(int i = 0; i < CongfigGame.lengthRow; i++) {
+			for(int j = 0; j < CongfigGame.lengthColum; j++) {
 				System.out.print(MT[i][j].typeCandy + " ");
 			}
 			System.out.println();
