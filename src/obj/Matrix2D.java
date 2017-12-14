@@ -37,12 +37,18 @@ public class Matrix2D {
 	
 	public int fallingX;
 	public int fallingY;
+	
 	public boolean isActive = false;
 	public boolean isFalling = false;
 	public boolean isClickOutSide;
 	public int check = 0;
 	public int [] image= new int[6];
 	public int [][] b;
+	public boolean notDetectRight = false;
+	public boolean notDetectLeft = false;
+	public boolean notDetectUp = false;
+	public boolean notDetectDown = false 
+			;
 	public static Pos[][] locateCandy;	
 	
 	
@@ -52,8 +58,8 @@ public class Matrix2D {
 	
 		MT = new Candy[lengthRow][lengthColum];
 		locateCandy = new Pos[9][9];
-		for(int i = 0 ; i < 9; i++) {
-			for(int j = 0; j < lengthColum; j++) {
+		for(int i = 0 ; i < lengthColum; i++) {
+			for(int j = 0; j < lengthRow; j++) {
 				int type= choosecandy(i,j,MT);
 				setMT(i,j,type);
 				setPos(i, j);

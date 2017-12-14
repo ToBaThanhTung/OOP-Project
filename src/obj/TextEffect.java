@@ -8,7 +8,7 @@ public class TextEffect {
 	public boolean isDestroy = false;
 	public int counter = 0;
 	public float moveSpeedY = 1;
-	public int counterDeleteLength = 40;
+	public int counterDeleteLength = 60;
 	public int typeScore;
 	public TextEffect(float x, float y, int typeTextEffect, float moveSpeedY, String str, int typeScore) {
 		this.x = x;
