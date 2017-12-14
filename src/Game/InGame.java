@@ -42,11 +42,8 @@ import obj.DrawCandy;
 import obj.Matrix2D;
 import obj.Pos;
 import obj.TextEffect;
-<<<<<<< HEAD
 import sun.misc.Signal;
 import sun.net.www.content.audio.x_aiff;
-=======
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 import sun.util.logging.resources.logging;
 
 
@@ -66,7 +63,6 @@ public class InGame extends BasicGameState{
 	
 	// draw mouse pos to debug game
 	String mouse = "No Input!";
-<<<<<<< HEAD
 	String scoreString = "No";
 	
 	// is click left mouse
@@ -110,47 +106,12 @@ public class InGame extends BasicGameState{
 	private String time;
 	
 	
-=======
-	String scoreString = "No";	
-	// colum & row
-	int lengthColum = 9;
-	int lengthRow = 9;	
-	// is click left mouse
-	public static boolean isClickLeftMouse;	
-	// position of mouse
-	public static float posX;
-	public static float posY;	
-	// set active candy
-	public static int activeX;
-	public static int activeY;	
-	// random text score
-	Random random = new Random();	
-	// list obj text score and time
-	public static ArrayList<TextEffect> textEffectsArr;
-	// candy temp
-	public static int saveType;	
-	// boolean variable
-	public static boolean isMatching = false;
-	public static boolean gameOver = false;	
-	// state game
-	public int stateInGame = 0;	
-	// time
-	public static int countTime = 0;
-	public static int minute = 60;
-	// score game
-	public static int Score = 0;	
-	// font define	
-	public MyFont fontScore;
-	public MyFont scoreApear;
-	private String time;	
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 	// sound
 	MySound soundClickButton;
 	MySound soundSwap;
 	MySound match3Sound;
 	MySound match4Sound;
 	MySound match5Sound;
-<<<<<<< HEAD
 	MySound collectScoreSound;
 	MySound themeSound;
 	
@@ -159,21 +120,11 @@ public class InGame extends BasicGameState{
 	
 	
 	
-=======
-	MySound collectScoreSound;	
-	public boolean checkbug = false;
-	
-	
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 	@Override
 	public void init(GameContainer ag, StateBasedGame sbg) throws SlickException {
 		
 		// back ground inGame
-<<<<<<< HEAD
 		inGame = new Image("images/Frosting_Springs_background.jpg");
-=======
-		inGame = new Image("images/mainMenu.jpg");
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 		
 		
 		// install obj matrix2d
@@ -181,18 +132,12 @@ public class InGame extends BasicGameState{
 		
 		// install arr obj text effect
 		textEffectsArr = new ArrayList<TextEffect>();
-<<<<<<< HEAD
 		
 		// in stall obj font score
 		fontScore = new MyFont("font/1979_dot_matrix.ttf", 25);
 		fontSign = new MyFont("font/scoreApear.ttf", 20);
 		scoreApear = new MyFont("font/Snowdrift.ttf", 25 );
-=======
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 		
-		// in stall obj font score
-		fontScore = new MyFont("font/crackman.ttf", 25);
-		//scoreApear = new MyFont("font/scoreApear", 17);
 		// init sound
 		soundClickButton = new MySound("sound/Button_press.ogg");
 		soundSwap = new MySound("sound/swapSound.ogg");
@@ -231,19 +176,15 @@ public class InGame extends BasicGameState{
 		// draw candy & text effect
 		drawCandy = new DrawCandy();
 		
-<<<<<<< HEAD
 		
-=======
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 	}
 		
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-<<<<<<< HEAD
 		
 		// make Sign String move
 		if(isSignMoveRight == true) {
-			signX += 0.5f;
+			signX +=0.5f;
 			//System.out.println(signX);
 			if(signX == 631.0) {
 				isSignMoveRight =  false;
@@ -290,68 +231,34 @@ public class InGame extends BasicGameState{
 		drawSwapRight();
 		
 		
-=======
-		// delta = 1000ms		
-		countTime += delta;	
-		// tao hieu ung dem nguoc
-		time = "Time:  " + (minute - (countTime / 1000));
-		// update score
-		scoreString = "Score: " + Score; 
-		if(gc.getInput().isKeyDown(Input.KEY_BACK)) {
-			sbg.enterState(0, new FadeOutTransition(), new FadeInTransition());}
-		// update postion of mouse 
-		posX = gc.getInput().getMouseX();
-		posY = gc.getInput().getMouseY();
-		mouse = "X:" + posX + "Y:" + posY; 	
-		// set true when mouse clicking
-		isClickLeftMouse = gc.getInput().isMousePressed(0);		
-		// delete text 
-		deleteText(); 
-		// detect when mouse hit text score
-		collectScore();		
-		// xu li roi candy
-		testFalling();		
-		drawSwapRight();		
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 		// logic game
 		if(stateInGame == 0) {
 			detectClickCandy(gc, sbg);
-			detectMove();			
-		}		
+			detectMove();
+			
+		}
+		
 		if(stateInGame == 1) {
-<<<<<<< HEAD
 			detectMatch();
 			
 			
-=======
-			detectMatch();			
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 		}
 		if(stateInGame == 2) {
-			Falling();			
+			Falling();
+			
 		}
 		if(stateInGame == 3) {
 			checkIsNotDetect();
-<<<<<<< HEAD
 		}
 		
 		
-=======
-		}		
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 		// check game over
 		if(minute - (countTime / 1000) == 0) {
-			gameOver = true;			
+			gameOver = true;
+			
 			sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
-		}		
-		resetWhenGameOver();			
-	}
-	
-	
-	
-public void detectMove() {
+		}
 		
-<<<<<<< HEAD
 				
 		
 		resetWhenGameOver();
@@ -431,77 +338,6 @@ public void checkIsNotDetect() {
 		matrix2d.notDetectDown = false;
 	}
 	
-=======
-		detectMoveRight();
-		detectMoveLeft();
-		detectMoveUp();
-		detectMoveDown();
-		
-	}
-
-
-
-public void detectMatch() {
-	
-		// state hien tai = 1 
-	
-		isMatching = false;
-		detectMatch5X();
-		detectMatch5Y();
-		detectMatch4X();
-		detectMatch4Y();
-		detectMatch3X();
-		detectMatch3Y();
-		
-		
-		if(isMatching) {
-			stateInGame = 2;
-			matrix2d.notDetectRight = false;
-			matrix2d.notDetectDown = false;
-			matrix2d.notDetectLeft = false;
-			matrix2d.notDetectUp = false;
-			checkbug = false;
-		}
-		else {
-			checkbug = true;
-			stateInGame = 3;
-		}
-}
-
-public void checkIsNotDetect() {
-	if(matrix2d.notDetectRight) {
-		
-		saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
-		matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy;
-		matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy = saveType;
-	
-		matrix2d.notDetectRight = false;
-	}
-	
-	if(matrix2d.notDetectLeft) {
-		saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
-		matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].typeCandy;
-		matrix2d.MT[matrix2d.activeX][matrix2d.activeY - 1].typeCandy = saveType;
-		
-		matrix2d.notDetectLeft = false;
-	}
-	if(matrix2d.notDetectUp) {
-		saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
-		matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].typeCandy;
-		matrix2d.MT[matrix2d.activeX - 1][matrix2d.activeY].typeCandy = saveType;
-	
-		matrix2d.notDetectUp = false;
-	}
-	
-	if(matrix2d.notDetectDown) {
-		saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
-		matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].typeCandy;
-		matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].typeCandy = saveType;
-		
-		matrix2d.notDetectDown = false;
-	}
-	
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 	stateInGame = 0;
 	
 }
@@ -530,13 +366,8 @@ public void checkIsNotDetect() {
 	
 	public void drawSwapRight() {
 		if(checkbug)
-<<<<<<< HEAD
 		for(int i = 0; i < CongfigGame.lengthRow ; i++) {
 			for(int j = 0; j < CongfigGame.lengthColum; j ++) {
-=======
-		for(int i = 0; i < lengthRow ; i++) {
-			for(int j = 0; j < lengthColum; j ++) {
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 				
 					if(matrix2d.MT[i][j].y > matrix2d.locateCandy[i][j].y) {
 						matrix2d.MT[i][j].y -= 40;
@@ -587,7 +418,6 @@ public void checkIsNotDetect() {
 				}
 			}
 			
-<<<<<<< HEAD
 	}
 	
 	
@@ -601,18 +431,11 @@ public void checkIsNotDetect() {
 
 
 	
-=======
-	}	
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 	public void detectMoveRight() {
 		// check candy is active?
 		if(matrix2d.isActive) {
 			// check is hit the end of colum
-<<<<<<< HEAD
 			if(matrix2d.activeY  + 1  <= CongfigGame.lengthColum - 1) {
-=======
-			if(matrix2d.activeY  + 1  <= lengthColum - 1) {
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 				// check xem candy va candy ben phai no co dang falling hay ko
 				if(matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy != 10 && matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy != 10)
 					// if mouse hit the right candy
@@ -733,11 +556,7 @@ public void checkIsNotDetect() {
 	
 	public void detectMoveDown() {
 		if(matrix2d.isActive) {
-<<<<<<< HEAD
 				if(matrix2d.activeX + 1  <= CongfigGame.lengthRow - 1) {
-=======
-				if(matrix2d.activeX + 1  <= lengthRow - 1) {
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 					if(matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy != 10 && matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].typeCandy != 10)
 					if(posY > matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].x && posY < (matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].x + 80)
 							&& posX > matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].y &&  posX < matrix2d.MT[matrix2d.activeX + 1][matrix2d.activeY].y + 80 ) {
@@ -782,10 +601,7 @@ public void checkIsNotDetect() {
 		for(TextEffect t : textEffectsArr ) {
 			// if mouse hit the text
 			if(posX >= t.x && posX <= (t.x + 70) && posY >= t.y && posY <= (t.y  + 70)) {
-<<<<<<< HEAD
 				t.moveScore = true;
-=======
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 				t.isDestroy = true;
 				collectScoreSound.myPlaySound();
 				if(t.typeScore == 3)
@@ -816,7 +632,6 @@ public void checkIsNotDetect() {
 	
 	void detectMatch3Y() {
 		// search the board
-<<<<<<< HEAD
 		for(int i = 0; i < CongfigGame.lengthRow; i++) {
 			for(int j = 0; j < CongfigGame.lengthColum; j++) {
 				
@@ -828,16 +643,6 @@ public void checkIsNotDetect() {
 							//rand.nextFloat() * (max - min) + min
 							addtext(random.nextFloat() * 810, random.nextFloat() * (894 - 150 ) + 150 , matrix2d.MT[i][j].typeCandy, 5, "30 Score", 3);
 							
-=======
-		for(int i = 0; i < lengthColum; i++) {
-			for(int j = 0; j < lengthRow; j++) {
-				
-				if(matrix2d.MT[i][j].typeCandy != 10) {
-					if((i + 2) < lengthColum) {
-						
-						if(matrix2d.MT[i][j].typeCandy == matrix2d.MT[i + 1][j].typeCandy && matrix2d.MT[i][j].typeCandy == matrix2d.MT[i + 2][j].typeCandy ) {
-							addtext(random.nextFloat() * 894, random.nextFloat() * 894  , matrix2d.MT[i][j].typeCandy, 5, "30 Score", 3);
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 							// addtext(500, 50 , matrix2d.MT[i][j].typeCandy, 0.5f, "+ 2 second");
 							
 							 // play sound
@@ -865,26 +670,15 @@ public void checkIsNotDetect() {
 	
 	public void detectMatch3X() {
 		// search board
-<<<<<<< HEAD
 		for(int i = 0; i < CongfigGame.lengthColum; i++) {
 			for(int j = 0; j < CongfigGame.lengthRow; j++) {
 				if(matrix2d.MT[i][j].typeCandy != 10) {
 					if((j + 2) < CongfigGame.lengthRow) {
-=======
-		for(int i = 0; i < lengthColum; i++) {
-			for(int j = 0; j < lengthRow; j++) {
-				if(matrix2d.MT[i][j].typeCandy != 10) {
-					if((j + 2) < lengthRow) {
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 						// neu tim duoc 1 day 3 candy trung nhau
 						if(matrix2d.MT[i][j].typeCandy == matrix2d.MT[i][j + 1].typeCandy && matrix2d.MT[i][j].typeCandy == matrix2d.MT[i][j + 2].typeCandy ) {
 							
 							// add text score
-<<<<<<< HEAD
 							addtext(random.nextFloat() * 810, random.nextFloat() * (894 - 150 ) + 150 , matrix2d.MT[i][j].typeCandy, 5, "30 Score", 3);
-=======
-							addtext(random.nextFloat() * 894, random.nextFloat() * 894 , matrix2d.MT[i][j].typeCandy, 5, "30 Score", 3);
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 							addtext(500, 50 , matrix2d.MT[i][j].typeCandy, 1, "+ 2 second", 0);
 							
 							// play sound
@@ -1014,13 +808,8 @@ public void checkIsNotDetect() {
 	
 	public void testFalling() {
 		if(!checkbug) {
-<<<<<<< HEAD
 		for(int i = 0; i < CongfigGame.lengthRow; i++) {
 			for(int j = 0; j < CongfigGame.lengthColum; j++) {
-=======
-		for(int i = 0; i < lengthColum; i++) {
-			for(int j = 0; j < lengthRow; j++) {
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 				if(matrix2d.MT[i][j].isFalling) {
 					
 					
@@ -1065,13 +854,8 @@ public void checkIsNotDetect() {
 		}
 	
 		
-<<<<<<< HEAD
 		for(int i = 0; i < CongfigGame.lengthRow; i++) {
 			for(int j = 0; j < CongfigGame.lengthColum; j++) {
-=======
-		for(int i = 0; i < lengthColum; i++) {
-			for(int j = 0; j < lengthRow; j++) {
->>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 				if(matrix2d.MT[i][j].typeCandy == 10) {
 					if(i == 0) {
 						matrix2d.MT[i][j].x = 70;
