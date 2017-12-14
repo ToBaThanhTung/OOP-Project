@@ -23,7 +23,7 @@ public class MyFont{
 		try		
 		{
 	        UIFont1 = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT,
-	        org.newdawn.slick.util.ResourceLoader.getResourceAsStream("font/bannerInGame.ttf"));
+	        org.newdawn.slick.util.ResourceLoader.getResourceAsStream(resFont));
 	        UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, size); 
 
 	        uniFont = new UnicodeFont(UIFont1);
