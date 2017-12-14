@@ -37,13 +37,21 @@ public class Matrix2D {
 	
 	public int fallingX;
 	public int fallingY;
+<<<<<<< HEAD
 	public boolean notDetectRight = false;
+=======
+	
+>>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 	public boolean isActive = false;
 	public boolean isFalling = false;
 	public boolean isClickOutSide;
 	public int check = 0;
 	public int [] image= new int[6];
 	public int [][] b;
+<<<<<<< HEAD
+=======
+	public boolean notDetectRight = false;
+>>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 	public boolean notDetectLeft = false;
 	public boolean notDetectUp = false;
 	public boolean notDetectDown = false 
@@ -55,10 +63,17 @@ public class Matrix2D {
 	
 	public Matrix2D() throws SlickException {
 	
+<<<<<<< HEAD
 		MT = new Candy[CongfigGame.lengthRow][CongfigGame.lengthColum];
 		locateCandy = new Pos[CongfigGame.lengthRow][CongfigGame.lengthRow];
 		for(int i = 0 ; i < CongfigGame.lengthColum; i++) {
 			for(int j = 0; j < CongfigGame.lengthRow; j++) {
+=======
+		MT = new Candy[lengthRow][lengthColum];
+		locateCandy = new Pos[9][9];
+		for(int i = 0 ; i < lengthColum; i++) {
+			for(int j = 0; j < lengthRow; j++) {
+>>>>>>> c6d4bc4ab6b1705386ebfc417cfb6625593665b7
 				int type= choosecandy(i,j,MT);
 				setMT(i,j,type);
 				setPos(i, j);
