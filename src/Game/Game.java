@@ -41,7 +41,7 @@ public class Game extends StateBasedGame {
 			AppGameContainer appGameContainer = new AppGameContainer(new Game("CandyCrush Project"));
 			appGameContainer.setDisplayMode(WIDTH, HEIGHT, false);
 			appGameContainer.setTargetFrameRate(FPS);
-			appGameContainer.setShowFPS(true);
+			//appGameContainer.setShowFPS(true);
 			appGameContainer.start();
 		} 
 		catch (SlickException e) {

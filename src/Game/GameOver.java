@@ -31,8 +31,8 @@ public class GameOver extends BasicGameState{
 		overGameImage.draw(0, 0);
 		myFont.myFontDraw(250, 300, "GAME OVER !!!", Color.black);
 		
-		myFont.myFontDraw(200,400, "your score: " + score, Color.black);
-		
+		myFont.myFontDraw(150, 400, "your score: " + score, Color.black);
+		myFont.myFontDraw(100, 500, "Press Space to play again !!!", Color.black);
 	}
 
 	@Override

@@ -18,22 +18,11 @@ import org.newdawn.slick.UnicodeFont;
 
 
 import org.newdawn.slick.font.effects.ColorEffect;
-
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.omg.CORBA.PRIVATE_MEMBER;
-import org.omg.CORBA.PUBLIC_MEMBER;
-import org.omg.CORBA.ORBPackage.InconsistentTypeCode;
-
-import com.sun.corba.se.spi.activation._ActivatorImplBase;
-import com.sun.javafx.font.t2k.T2KFactory;
-
-import javafx.scene.layout.Background;
-
-
 import net.java.games.input.Mouse;
 
 
@@ -42,9 +31,7 @@ import obj.DrawCandy;
 import obj.Matrix2D;
 import obj.Pos;
 import obj.TextEffect;
-import sun.misc.Signal;
-import sun.net.www.content.audio.x_aiff;
-import sun.util.logging.resources.logging;
+
 
 
 public class InGame extends BasicGameState{
@@ -120,6 +107,14 @@ public class InGame extends BasicGameState{
 	
 	
 	
+	
+	/*Initialise the state. It should load any resources it needs at this stage
+	Parameters:
+	container - The container holding the game
+	game - The game holding this state
+	Throws:
+	SlickException - Indicates a failure to initialise a resource for this state*/
+		
 	@Override
 	public void init(GameContainer ag, StateBasedGame sbg) throws SlickException {
 		
@@ -149,6 +144,14 @@ public class InGame extends BasicGameState{
 		// play & loop theme song 
 		themeSound.myPlayLoopSound();
 	}
+	
+	/*Parameters:
+		container - The container holding the game
+		game - The game holding this state
+		g - The graphics context to render to
+		Throws:
+		SlickException - Indicates a failure to render an artifact*/
+
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -156,7 +159,9 @@ public class InGame extends BasicGameState{
 		// draw a background behind candy
 		g.setColor(Color.white);
         g.fillRect(0, 0, 900, 900);
-        inGame.draw(0, 0);	
+        
+        inGame.draw(0, 0);
+        
         g.setColor(new Color(0, 0, 70, 100));
         g.fillRoundRect(80, 140, 730, 730, 30, 30);
       
@@ -170,7 +175,7 @@ public class InGame extends BasicGameState{
 		
 		g.setColor(Color.black);
 		
-		g.drawString(mouse, 50, 50);
+	//	g.drawString(mouse, 50, 50);
 		
 		
 		// draw candy & text effect
@@ -178,6 +183,15 @@ public class InGame extends BasicGameState{
 		
 		
 	}
+	
+	
+	/*Update the state's logic based on the amount of time thats passed
+	Parameters:
+	container - The container holding the game
+	game - The game holding this state
+	delta - The amount of time thats passed in millisecond since last update
+	Throws:
+	SlickException - Indicates an internal error that will be reported through the standard framework mechanism*/
 		
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -263,7 +277,7 @@ public class InGame extends BasicGameState{
 		
 		resetWhenGameOver();
 			
-	}
+	} // end function update
 	
 	
 	
@@ -292,19 +306,24 @@ public void detectMatch() {
 		
 		
 		if(isMatching) {
-			stateInGame = 2;
+			// set false to function checkIsNotDetect
 			matrix2d.notDetectRight = false;
 			matrix2d.notDetectDown = false;
 			matrix2d.notDetectLeft = false;
 			matrix2d.notDetectUp = false;
+			// chay ham faling
+			stateInGame = 2;
 			checkbug = false;
 		}
 		else {
 			checkbug = true;
+			 // chay ham checkIsNotDetect
 			stateInGame = 3;
 		}
 }
 
+
+// swap back when not matching
 public void checkIsNotDetect() {
 	if(matrix2d.notDetectRight) {
 		
@@ -345,7 +364,7 @@ public void checkIsNotDetect() {
 
 
 
-	
+	// reset cac bien tam thoi khi reset game
 	public static void resetWhenGameOver() {
 		if(gameOver == true) {
 			//Score = 0;
@@ -363,26 +382,26 @@ public void checkIsNotDetect() {
 		}
 	}
 	
-	
+	// tao hieu ung chuyen dong khi thay doi vi tri candy
 	public void drawSwapRight() {
 		if(checkbug)
 		for(int i = 0; i < CongfigGame.lengthRow ; i++) {
 			for(int j = 0; j < CongfigGame.lengthColum; j ++) {
 				
 					if(matrix2d.MT[i][j].y > matrix2d.locateCandy[i][j].y) {
-						matrix2d.MT[i][j].y -= 40;
+						matrix2d.MT[i][j].y -= 10;
 					}
 					
 					if(matrix2d.MT[i][j].y < matrix2d.locateCandy[i][j].y) {
-						matrix2d.MT[i][j].y += 40;
+						matrix2d.MT[i][j].y += 10;
 					}
 					
 					if(matrix2d.MT[i][j].x < matrix2d.locateCandy[i][j].x) {
-						matrix2d.MT[i][j].x += 40;
+						matrix2d.MT[i][j].x += 10;
 					}
 					
 					if(matrix2d.MT[i][j].x > matrix2d.locateCandy[i][j].x) {
-						matrix2d.MT[i][j].x -= 40;
+						matrix2d.MT[i][j].x -= 10;
 					}
 					
 				
@@ -807,14 +826,14 @@ public void checkIsNotDetect() {
 
 	
 	public void testFalling() {
-		if(!checkbug) {
+		if(!checkbug ) {
 		for(int i = 0; i < CongfigGame.lengthRow; i++) {
 			for(int j = 0; j < CongfigGame.lengthColum; j++) {
 				if(matrix2d.MT[i][j].isFalling) {
 					
 					
 						if(matrix2d.MT[i][j].x < matrix2d.locateCandy[i][j].x ) {
-							matrix2d.MT[i][j].x += 40;
+							matrix2d.MT[i][j].x += 20;
 							
 							
 						}
@@ -873,7 +892,7 @@ public void checkIsNotDetect() {
 		}
 		
 		
-		if(rp) {
+		if(rp ) {
 			Falling();
 			
 		}
