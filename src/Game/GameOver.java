@@ -12,13 +12,21 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class GameOver extends BasicGameState{
-
+	// res over game Images
 	public Image overGameImage;
-	//public InGame inGame;
+	//public InGame inGame;\
+	
+	// score to print score
+	private int score;
+	// font chu in ra man hinh over game
+	
 	public MyFont myFont;
-	public int score;
+	
+	// debug mouse
 	private int posX;
 	private int posY;
+	
+	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		overGameImage = new Image("images/Frosting_Springs_background.jpg");

@@ -45,7 +45,7 @@ public class InGame extends BasicGameState{
 	
 	// sign game
 	public static final String sign = "Game by IU-007";
-	private float signX = 81;
+	private static float signX = 81;
 	private float signY = 118;
 	
 	// draw mouse pos to debug game
@@ -200,7 +200,7 @@ public class InGame extends BasicGameState{
 		if(isSignMoveRight == true) {
 			signX +=0.5f;
 			//System.out.println(signX);
-			if(signX == 631.0) {
+			if(signX == 635.0) {
 				isSignMoveRight =  false;
 			}
 		}
@@ -307,13 +307,14 @@ public void detectMatch() {
 		
 		if(isMatching) {
 			// set false to function checkIsNotDetect
+			checkbug = false;
 			matrix2d.notDetectRight = false;
 			matrix2d.notDetectDown = false;
 			matrix2d.notDetectLeft = false;
 			matrix2d.notDetectUp = false;
 			// chay ham faling
 			stateInGame = 2;
-			checkbug = false;
+			
 		}
 		else {
 			checkbug = true;
@@ -326,7 +327,7 @@ public void detectMatch() {
 // swap back when not matching
 public void checkIsNotDetect() {
 	if(matrix2d.notDetectRight) {
-		
+		System.out.println("RIGHT!!!!!!!!!!!!!!!");
 		saveType = matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy;
 		matrix2d.MT[matrix2d.activeX][matrix2d.activeY].typeCandy = matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy;
 		matrix2d.MT[matrix2d.activeX][matrix2d.activeY + 1].typeCandy = saveType;
@@ -356,7 +357,8 @@ public void checkIsNotDetect() {
 		
 		matrix2d.notDetectDown = false;
 	}
-	
+	System.out.println("Not detect match!!!!");
+	matrix2d.showMatrix2D();
 	stateInGame = 0;
 	
 }
@@ -369,6 +371,7 @@ public void checkIsNotDetect() {
 		if(gameOver == true) {
 			//Score = 0;
 			isMatching = false;
+			signX = 0;
 			countTime = 0;
 			minute = 60;
 			try {
@@ -620,8 +623,10 @@ public void checkIsNotDetect() {
 		for(TextEffect t : textEffectsArr ) {
 			// if mouse hit the text
 			if(posX >= t.x && posX <= (t.x + 70) && posY >= t.y && posY <= (t.y  + 70)) {
+				
 				t.moveScore = true;
 				t.isDestroy = true;
+				
 				collectScoreSound.myPlaySound();
 				if(t.typeScore == 3)
 					Score += 30;
@@ -843,8 +848,8 @@ public void checkIsNotDetect() {
 				}
 			}
 		}
-		}
 	}
+}
 	
 	public void Falling() {
 		if(!checkbug) {

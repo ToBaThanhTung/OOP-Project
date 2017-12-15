@@ -15,34 +15,27 @@ import MyLog.MyLog;
 import sun.security.action.GetBooleanAction;
 
 public class Candy {
-	
-	
+	// random candy
 	static Random random = new Random();
+	// type candy
 	public int typeCandy;
-	
+	// location canndy
 	public float x;
 	public float y;
-	
+	// is candy active ?
 	public boolean isActived = false;
+	// is candy falling ?
 	public  boolean isFalling = false;
-	public boolean redown = false;
-	public boolean reup = false;
-	public boolean isDown = false;
-	public boolean isUp = false;
-	public boolean reright = false;
-	public boolean isLeft = false;
-	public boolean releft = false;
-	public boolean isRight = false;
+	
 	
 	public Candy(int typeCandy, float x, float y ) {
 		this.typeCandy = typeCandy;
 		this.x = x;
 		this.y = y;
 	}
-	
+	// a random function to get random candy
 	public static int getTypeCandy() {
 		return random.nextInt(6);
-		
 	}
 	
 
