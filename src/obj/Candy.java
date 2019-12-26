@@ -4,15 +4,9 @@ import java.util.Random;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import com.sun.javafx.geom.transform.GeneralTransform3D;
-import com.sun.org.apache.xerces.internal.util.DraconianErrorHandler;
-import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac.IntegrityHmacSHA256;
-
 import Game.InGame;
 import MyLog.MyLog;
-import sun.security.action.GetBooleanAction;
+
 
 public class Candy {
 	// random candy

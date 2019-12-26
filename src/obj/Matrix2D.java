@@ -5,15 +5,12 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.text.StyledEditorKit.ForegroundAction;
 import javax.xml.ws.soap.MTOM;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import com.sun.javafx.image.IntPixelAccessor;
-import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 import Game.CongfigGame;
 import Game.InGame;

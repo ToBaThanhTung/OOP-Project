@@ -1,0 +1,36 @@
+{
+  "build": "stable",
+  "mode": "zip",
+  "selectedAddons": [],
+  "platform": [
+    "linux",
+    "windows"
+  ],
+  "descriptions": false,
+  "compact": false,
+  "hardcoded": false,
+  "javadoc": true,
+  "includeJSON": true,
+  "source": true,
+  "osgi": false,
+  "language": "groovy",
+  "contents": [
+    "lwjgl",
+    "lwjgl-opus",
+    "lwjgl-ovr",
+    "lwjgl-par",
+    "lwjgl-remotery",
+    "lwjgl-rpmalloc",
+    "lwjgl-shaderc",
+    "lwjgl-sse",
+    "lwjgl-stb",
+    "lwjgl-tinyexr",
+    "lwjgl-tinyfd",
+    "lwjgl-tootle",
+    "lwjgl-vma",
+    "lwjgl-vulkan",
+    "lwjgl-xxhash",
+    "lwjgl-yoga",
+    "lwjgl-zstd"
+  ]
+}
